@@ -40,6 +40,14 @@ namespace pruebaTecnica.Controllers
 
         public IActionResult guardar([FromBody] Cliente objeto)
         {
+            Cliente fcCliente = _dbcontext.Clientes.Find(objeto.FechaCreacion);
+
+            if(fcCliente == null)
+            {
+                DateTime fechaCreacion = DateTime.Now;
+                objeto.FechaCreacion = fechaCreacion;
+            }
+
             try
             {
                 _dbcontext.Clientes.Add(objeto);
