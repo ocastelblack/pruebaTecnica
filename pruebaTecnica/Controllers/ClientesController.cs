@@ -41,7 +41,18 @@ namespace pruebaTecnica.Controllers
 
         public IActionResult guardar([FromBody] Cliente objeto)
         {
-            //String fechaNacimiento = (objeto.FechaNacimiento).ToString();
+            String longitudNombre = (objeto.Nombres).ToString();
+            String longitudApellido = (objeto.Apellido).ToString();
+
+            if (longitudNombre.Length<2)
+            {
+                return BadRequest("El nombre no es valido");
+            }
+
+            if (longitudApellido.Length < 2)
+            {
+                return BadRequest("El nombre no es valido");
+            }
 
             //var addr = new System.Net.Mail.MailAddress((objeto.Corre).ToString());
 
