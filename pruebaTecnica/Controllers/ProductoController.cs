@@ -26,7 +26,6 @@ namespace pruebaTecnica.Controllers
         public IActionResult GuardarProducto([FromBody] Producto objeto)
         {
             Cliente oCliente = _dbcontextP.Clientes.Find(objeto.IdCliente);
-            //Producto oProducto = _dbcontextP.Productos.Find(objeto.IdCliente);
             String tipoCuenta = (objeto.TipoCuenta).ToString();
             int saldo = Int32.Parse((objeto.Saldo).ToString());
 
