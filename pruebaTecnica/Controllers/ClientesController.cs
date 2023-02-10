@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using pruebaTecnica.Models;
+using System.Text.RegularExpressions;
 
 namespace pruebaTecnica.Controllers
 {
@@ -42,6 +43,14 @@ namespace pruebaTecnica.Controllers
         {
             //String fechaNacimiento = (objeto.FechaNacimiento).ToString();
 
+            //var addr = new System.Net.Mail.MailAddress((objeto.Corre).ToString());
+
+            if(Regex.IsMatch((objeto.Corre).ToString(), 
+                @"^(?("")("".+?""@)|(([0-9a-zA-Z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-zA-Z])@))" + @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,6}))$") == false)
+            {
+                return BadRequest("El correo no es valido");
+            }
+
             DateTime now = DateTime.Today;
             int edad = DateTime.Today.Year - DateTime.Parse((objeto.FechaNacimiento).ToString()).Year;
 
@@ -50,6 +59,7 @@ namespace pruebaTecnica.Controllers
                 return BadRequest("El cliente es menor de edad");
             }
 
+            
             Cliente fcCliente = _dbcontext.Clientes.Find(objeto.FechaCreacion);
 
             if(fcCliente == null)
