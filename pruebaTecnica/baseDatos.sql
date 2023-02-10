@@ -25,6 +25,7 @@
 
  create table transacciones(
  idTransacciones int primary key identity (1,1),
+ montoTransaccion int,
  tipoTransaccion varchar(100),
  descripcionTransaccion varchar(max),
  id_Cliente int FOREIGN KEY (id_Cliente) REFERENCES clientes(idClientes),

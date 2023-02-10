@@ -9,6 +9,8 @@ public partial class Transaccione
 
     public string? TipoTransaccion { get; set; }
 
+    public int? montoTransaccion { get; set; }
+
     public string? DescripcionTransaccion { get; set; }
 
     public int? IdCliente { get; set; }
