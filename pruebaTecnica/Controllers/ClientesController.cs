@@ -34,5 +34,23 @@ namespace pruebaTecnica.Controllers
                 return StatusCode(StatusCodes.Status200OK, new { mensaje = ex.Message, Response = lista });
             }
         }
+
+        [HttpPost]
+        [Route("Guardar")]
+
+        public IActionResult guardar([FromBody] Cliente objeto)
+        {
+            try
+            {
+                _dbcontext.Clientes.Add(objeto);
+                _dbcontext.SaveChanges();
+
+                return StatusCode(StatusCodes.Status200OK, new { mensaje = "ok" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status200OK, new { mensaje = ex.Message });
+            }
+        }
     }
 }
