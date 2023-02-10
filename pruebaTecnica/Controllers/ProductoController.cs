@@ -34,7 +34,7 @@ namespace pruebaTecnica.Controllers
                 return BadRequest("El cliente no existe por favor crearlo");
             }
 
-            if( tipoCuenta != "cuenta corriente" || tipoCuenta != "cuenta de ahorros")
+            if( tipoCuenta != "cuenta corriente" && tipoCuenta != "cuenta de ahorros")
             {
                 return BadRequest("Tipo de cuenta no valida");
             }
@@ -53,7 +53,7 @@ namespace pruebaTecnica.Controllers
                     numeroAleatorio = Convert.ToInt64(
                         $"{new Random().Next(10000, 49999)}{new Random().Next(50000, 99999)}");
 
-                    Producto numero = _dbcontextP.Productos.Find(numeroAleatorio.ToString());
+                    Producto numero = _dbcontextP.Productos.Find(numeroAleatorio);
                     variable = numero.ToString();
 
                 } while (variable != null);
