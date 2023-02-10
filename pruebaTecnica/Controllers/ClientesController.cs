@@ -40,6 +40,16 @@ namespace pruebaTecnica.Controllers
 
         public IActionResult guardar([FromBody] Cliente objeto)
         {
+            //String fechaNacimiento = (objeto.FechaNacimiento).ToString();
+
+            DateTime now = DateTime.Today;
+            int edad = DateTime.Today.Year - DateTime.Parse((objeto.FechaNacimiento).ToString()).Year;
+
+            if (edad < 18)
+            {
+                return BadRequest("El cliente es menor de edad");
+            }
+
             Cliente fcCliente = _dbcontext.Clientes.Find(objeto.FechaCreacion);
 
             if(fcCliente == null)
