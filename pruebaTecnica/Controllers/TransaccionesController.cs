@@ -32,8 +32,15 @@ namespace pruebaTecnica.Controllers
 
             if (tipo.Equals("Consignación"))
             {
+                oProducto.Saldo = saldoAnterior + objeto.montoTransaccion;
+                objeto.DescripcionTransaccion = "Cosignacion exitosa para la " + oProducto.TipoCuenta + " numero " + oProducto.NumeroCuenta + " del cliente " + oCliente.Nombres + " " + oCliente.Apellido;
+            }
+
+
+            if (tipo.Equals("Retiro"))
+            {
                 oProducto.Saldo = saldoAnterior - objeto.montoTransaccion;
-                objeto.DescripcionTransaccion = "Cosignacion exitosa para la cuenta correiente " + oProducto.NumeroCuenta + " del cliente " + oCliente.Nombres + oCliente.Apellido;
+                objeto.DescripcionTransaccion = "Cosignacion exitosa para la " + oProducto.TipoCuenta + " numero " + oProducto.NumeroCuenta + " del cliente " + oCliente.Nombres + " " + oCliente.Apellido;
             }
 
             try
