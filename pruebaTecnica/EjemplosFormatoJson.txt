@@ -1,0 +1,27 @@
+Ejemplos metodos en formato json
+
+Agregar cliente:
+https://localhost:7296/api/Clientes/Guardar
+{
+  "tipoIentificacion": "cedula",
+  "numeroIdentificacion": 4674144,
+  "nombres": "javier",
+  "apellido": "amaya",
+  "corre": "fars@gmail.com",
+  "fechaNacimiento": "1896-02-10"
+}
+
+Editar cliente:
+https://localhost:7296/api/Clientes/Editar
+{
+    "idClientes": 2,
+  "tipoIentificacion": "cedula",
+  "numeroIdentificacion": 1026295690,
+  "nombres": "danilo",
+  "apellido": "c",
+  "corre": "rt@gmail.com",
+  "fechaNacimiento": "1996-02-10"
+}
+
+Eliminar Cliente:
+https://localhost:7296/api/Clientes/Eliminar/3
