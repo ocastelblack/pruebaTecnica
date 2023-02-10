@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using pruebaTecnica.Models;
+using System;
 using System.Text.RegularExpressions;
 
 namespace pruebaTecnica.Controllers
@@ -157,5 +158,30 @@ namespace pruebaTecnica.Controllers
             }
         }
 
+
+        [HttpDelete]
+        [Route("Eliminar/{idCliente:int}")]
+
+        public IActionResult Eliminar(int idCliente)
+        {
+            Cliente oCliente = _dbcontext.Clientes.Find(idCliente);
+
+            if (oCliente == null)
+            {
+                return BadRequest("Cliente No encontrado");
+            }
+
+            try
+            {
+                _dbcontext.Clientes.Remove(oCliente);
+                _dbcontext.SaveChanges();
+
+                return StatusCode(StatusCodes.Status200OK, new { mensaje = "ok" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status200OK, new { mensaje = ex.Message });
+            }
+        }
     }
 }
