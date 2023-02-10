@@ -25,3 +25,14 @@ https://localhost:7296/api/Clientes/Editar
 
 Eliminar Cliente:
 https://localhost:7296/api/Clientes/Eliminar/3
+
+Agregar Producto
+https://localhost:7296/api/Producto/GuardarProducto
+{
+  "tipoCuenta": "cuenta de ahorros",
+  "estado": "activo",
+  "saldo": 5700000,
+  "exenteGmf": "si",
+  "idCliente": 4
+}
+

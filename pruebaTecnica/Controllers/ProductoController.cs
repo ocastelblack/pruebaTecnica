@@ -46,8 +46,8 @@ namespace pruebaTecnica.Controllers
 
             if (tipoCuenta == "cuenta de ahorros")
             {
-                List<Producto> lista = new List<Producto>();
-                lista = _dbcontextP.Productos.ToList();
+                //List<Producto> lista = new List<Producto>();
+                //lista = _dbcontextP.Productos.ToList();
                 long numero = 0;
                 numero = Convert.ToInt64(
                         $"{new Random().Next(10000, 49999)}{new Random().Next(50000, 99999)}");
@@ -94,6 +94,41 @@ namespace pruebaTecnica.Controllers
             }
         }
 
+        [HttpPut]
+        [Route("EditarEstado")]
+
+        public IActionResult EditarEstado([FromBody] Producto objeto)
+        {
+            Producto oProducto= _dbcontextP.Productos.Find(objeto.IdProductos);
+
+            if (oProducto == null)
+            {
+                return BadRequest("Producto no encontrado");
+            }
+
+            if (oProducto.Saldo != 0 && objeto.Estado == "Cancelar")
+            {
+                return BadRequest("No se puede cancelar la cuenta");
+            }
+
+            try
+            {
+                oProducto.Estado = objeto.Estado is null ? oProducto.Estado : objeto.Estado;
+
+                DateTime fechaModificacion = DateTime.Now;
+                oProducto.FechaModificacion = fechaModificacion;
+
+
+                _dbcontextP.Productos.Update(oProducto);
+                _dbcontextP.SaveChanges();
+
+                return StatusCode(StatusCodes.Status200OK, new { mensaje = "ok" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status200OK, new { mensaje = ex.Message });
+            }
+        }
 
     }
 
