@@ -14,7 +14,7 @@
  create table productos (
   idProductos int primary key identity (1,1),
   tipoCuenta varchar(100),
-  numeroCuenta int,
+  numeroCuenta varchar(max);,
   estado varchar(50),
   saldo int,
   exenteGmf varchar(10),

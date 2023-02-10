@@ -9,7 +9,7 @@ public partial class Producto
 
     public string? TipoCuenta { get; set; }
 
-    public int? NumeroCuenta { get; set; }
+    public string? NumeroCuenta { get; set; }
 
     public string? Estado { get; set; }
 

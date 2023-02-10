@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using pruebaTecnica.Models;
 using System;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 
@@ -46,36 +47,33 @@ namespace pruebaTecnica.Controllers
 
             if (tipoCuenta == "cuenta de ahorros")
             {
-                String variable;
-                long numeroAleatorio = 0;
-                do
-                {
-                    numeroAleatorio = Convert.ToInt64(
+                List<Producto> lista = new List<Producto>();
+                lista = _dbcontextP.Productos.ToList();
+                long numero = 0;
+                numero = Convert.ToInt64(
                         $"{new Random().Next(10000, 49999)}{new Random().Next(50000, 99999)}");
 
-                    Producto numero = _dbcontextP.Productos.Find(numeroAleatorio);
-                    variable = numero.ToString();
-
-                } while (variable != null);
-
-                String numeroCuentaA = "53" + numeroAleatorio;
-                objeto.Saldo = Int32.Parse(numeroCuentaA);
+                String numeroCuentaA = "53" + numero;
+                objeto.NumeroCuenta = numeroCuentaA;
                 objeto.Estado = "activa";
             }
 
-            if (tipoCuenta == "cuenta corriente")
+            if (tipoCuenta == "cuenta corriente") 
             {
-                String variable;
+                //String variable;
+                //long numeroAleatorio = 0;
+                //do
+                //{
+                //    numeroAleatorio = Convert.ToInt64(
+                //        $"{new Random().Next(10000, 49999)}{new Random().Next(50000, 99999)}");
+
+                //    Producto numero = _dbcontextP.Productos.Contains<numeroAleatorio>;
+                //    variable = numero.ToString();
+
+                //} while (variable != null);
                 long numeroAleatorio = 0;
-                do
-                {
-                    numeroAleatorio = Convert.ToInt64(
+                numeroAleatorio = Convert.ToInt64(
                         $"{new Random().Next(10000, 49999)}{new Random().Next(50000, 99999)}");
-
-                    Producto numero = _dbcontextP.Productos.Find(numeroAleatorio.ToString());
-                    variable = numero.ToString();
-
-                } while (variable != null);
 
                 String numeroCuentaC = "33" + numeroAleatorio;
                 objeto.Saldo = Int32.Parse(numeroCuentaC);
